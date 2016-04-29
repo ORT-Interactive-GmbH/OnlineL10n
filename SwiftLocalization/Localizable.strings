@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SwiftLocalization
+
+  Created by Sebastian Westemeyer on 28.04.16.
+  Copyright © 2016 ORT Interactive. All rights reserved.
+*/
+
+"content_label" = "Dieser Text fehlt im LanguageProvider und wird aus der Localizable.strings gezogen";

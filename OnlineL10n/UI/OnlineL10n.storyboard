@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Country Controller-->
+        <scene sceneID="d7O-2g-OXc">
+            <objects>
+                <viewController storyboardIdentifier="countrycontroller" id="Bsq-Xn-F4g" customClass="CountryController" customModule="OnlineL10n" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="esH-37-6zM"/>
+                        <viewControllerLayoutGuide type="bottom" id="om6-lg-r0V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mOT-0y-XPg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="093-AZ-kdZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="CountryCell" id="sNT-4H-S25" customClass="CountryCell" customModule="OnlineL10n" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sNT-4H-S25" id="kTS-Of-M7D">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30D-5N-ArU">
+                                                    <rect key="frame" x="10" y="9" width="40" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="MDT-HR-lFP"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-kT-0A7">
+                                                    <rect key="frame" x="58" y="11" width="487" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dtv-kT-0A7" firstAttribute="top" secondItem="kTS-Of-M7D" secondAttribute="topMargin" constant="3" id="Am3-cR-b93"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dtv-kT-0A7" secondAttribute="bottom" constant="3" id="FF6-WN-icf"/>
+                                                <constraint firstItem="30D-5N-ArU" firstAttribute="top" secondItem="kTS-Of-M7D" secondAttribute="topMargin" constant="1" id="Rn7-TL-OGC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="30D-5N-ArU" secondAttribute="bottom" constant="1" id="e7O-kR-FET"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dtv-kT-0A7" secondAttribute="trailing" constant="47" id="fBz-JO-HlR"/>
+                                                <constraint firstItem="30D-5N-ArU" firstAttribute="leading" secondItem="kTS-Of-M7D" secondAttribute="leadingMargin" constant="2" id="o3J-EZ-6Mt"/>
+                                                <constraint firstItem="dtv-kT-0A7" firstAttribute="leading" secondItem="30D-5N-ArU" secondAttribute="trailing" constant="8" id="z4P-8c-PTa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="constraintImageWidth" destination="MDT-HR-lFP" id="vq4-cP-ztd"/>
+                                            <outlet property="imageViewFlag" destination="30D-5N-ArU" id="E7T-IO-dyy"/>
+                                            <outlet property="labelName" destination="dtv-kT-0A7" id="LUS-2C-6uf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Bsq-Xn-F4g" id="dBy-Es-1S7"/>
+                                    <outlet property="delegate" destination="Bsq-Xn-F4g" id="xNy-jt-Y3X"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="093-AZ-kdZ" firstAttribute="top" secondItem="mOT-0y-XPg" secondAttribute="top" id="5e0-JR-30m"/>
+                            <constraint firstAttribute="trailing" secondItem="093-AZ-kdZ" secondAttribute="trailing" id="H5G-rc-6fq"/>
+                            <constraint firstItem="093-AZ-kdZ" firstAttribute="leading" secondItem="mOT-0y-XPg" secondAttribute="leading" id="Kfh-N4-dQq"/>
+                            <constraint firstAttribute="bottom" secondItem="093-AZ-kdZ" secondAttribute="bottom" id="tTU-WH-bJV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rU1-P3-G50">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="C4D-Aw-gHg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="hxw-bQ-MhA">
+                            <connections>
+                                <action selector="onDone" destination="Bsq-Xn-F4g" id="3cq-gC-hoD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="backButton" destination="C4D-Aw-gHg" id="Xzp-I3-7lE"/>
+                        <outlet property="doneButton" destination="hxw-bQ-MhA" id="4hH-mD-xTp"/>
+                        <outlet property="tableView" destination="093-AZ-kdZ" id="RAJ-P4-i8L"/>
+                        <outlet property="view" destination="mOT-0y-XPg" id="ywf-j9-n40"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qsG-1O-eXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-399" y="-310"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D9I-b0-Xig">
+            <objects>
+                <navigationController storyboardIdentifier="countrynavicontroller" id="czJ-JW-vBF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B8K-Q0-VEw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bsq-Xn-F4g" kind="relationship" relationship="rootViewController" id="7Je-dM-5zO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUk-iW-maF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1134" y="-310"/>
+        </scene>
+    </scenes>
+</document>

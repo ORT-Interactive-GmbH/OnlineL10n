@@ -1,0 +1,6 @@
+framework module Pods_OnlineL10n {
+  umbrella header "Pods-OnlineL10n-umbrella.h"
+
+  export *
+  module * { export * }
+}
