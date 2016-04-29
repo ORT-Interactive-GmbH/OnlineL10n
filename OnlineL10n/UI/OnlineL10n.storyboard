@@ -76,7 +76,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rU1-P3-G50">
-                        <barButtonItem key="leftBarButtonItem" title="back" id="C4D-Aw-gHg"/>
+                        <barButtonItem key="leftBarButtonItem" title="back" id="C4D-Aw-gHg">
+                            <connections>
+                                <action selector="onBack" destination="Bsq-Xn-F4g" id="tp3-vm-xkV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="hxw-bQ-MhA">
                             <connections>
                                 <action selector="onDone" destination="Bsq-Xn-F4g" id="3cq-gC-hoD"/>

@@ -59,8 +59,10 @@ public class LocalizationManager: NSObject {
 
      - parameter index: selected language or country index
      */
-    public func selectLanguageByIndex(index: Int) {
-        selectLanguage(self.languageProvider.languages()[index])
+    public func selectLanguageByIndex(index: Int) -> String {
+        let language = self.languageProvider.languages()[index]
+        selectLanguage(language)
+        return language
     }
 
     /**
@@ -69,13 +71,13 @@ public class LocalizationManager: NSObject {
      - parameter lang: selected language or country
      */
     public func selectLanguage(lang: String) {
-        // clear localizations
-        self.localizations.removeAll()
-
         guard (self.languageProvider.hasLanguage(lang)) else {
             // TODO: exception?
             return
         }
+
+        // clear localizations
+        self.localizations.removeAll()
 
         // get new values
         for (key, value) in self.languageProvider.languageKeys(lang) {

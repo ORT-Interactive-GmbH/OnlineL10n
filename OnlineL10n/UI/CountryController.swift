@@ -21,6 +21,8 @@ public class CountryController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
+    public var delegate: CountryControllerDelegate?
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,7 +49,12 @@ public class CountryController: UIViewController {
 
         if let current = selectedRow {
             tableView.cellForRowAtIndexPath(current)?.accessoryType = .Checkmark
-            self.localizationManager.selectLanguageByIndex(selectedRow!.row)
+            // select language
+            let lang = self.localizationManager.selectLanguageByIndex(selectedRow!.row)
+            // notify delegate
+            if let del = delegate {
+                del.selectedLanguage(lang)
+            }
         }
     }
 
@@ -72,7 +79,21 @@ public class CountryController: UIViewController {
     }
 
     @IBAction func onDone() {
-        self.navigationController?.popViewControllerAnimated(true)
+        // notify delegate
+        if let del = delegate {
+            del.onDoneButton()
+        } else {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+
+    @IBAction func onBack() {
+        // notify delegate
+        if let del = delegate {
+            del.onBackButton()
+        } else {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 }
 

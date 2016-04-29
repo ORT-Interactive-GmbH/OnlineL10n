@@ -32,6 +32,7 @@
 		D3B6946D1CD2287700872BEF /* SharedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6946C1CD2287700872BEF /* SharedManager.swift */; };
 		D3B6946F1CD233A300872BEF /* OnlineL10n.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B6946E1CD233A300872BEF /* OnlineL10n.storyboard */; };
 		D3F89DA51CD2550D00D8154A /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F89DA41CD2550D00D8154A /* UIExtensions.swift */; };
+		D3F89DC51CD390C400D8154A /* CountryControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F89DC41CD390C400D8154A /* CountryControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		D3B6946C1CD2287700872BEF /* SharedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedManager.swift; sourceTree = "<group>"; };
 		D3B6946E1CD233A300872BEF /* OnlineL10n.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnlineL10n.storyboard; sourceTree = "<group>"; };
 		D3F89DA41CD2550D00D8154A /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		D3F89DC41CD390C400D8154A /* CountryControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryControllerDelegate.swift; sourceTree = "<group>"; };
 		D3FC8830063567DAA340F653 /* Pods_SwiftLocalization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLocalization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE10DD8DD7ED7676D94663A8 /* Pods-SwiftLocalization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLocalization.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLocalization/Pods-SwiftLocalization.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,6 +249,7 @@
 			children = (
 				D37A19F41CD0F68100F58D4E /* UIExtensions.swift */,
 				D39A98011CD1F7A3005945FD /* CountryController.swift */,
+				D3F89DC41CD390C400D8154A /* CountryControllerDelegate.swift */,
 				D39A98051CD210CC005945FD /* CountryCell.swift */,
 				D3B6946E1CD233A300872BEF /* OnlineL10n.storyboard */,
 			);
@@ -544,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37A19FA1CD0F68100F58D4E /* UIExtensions.swift in Sources */,
+				D3F89DC51CD390C400D8154A /* CountryControllerDelegate.swift in Sources */,
 				D37A19F81CD0F68100F58D4E /* LocalizationManager.swift in Sources */,
 				D39A98061CD210CC005945FD /* CountryCell.swift in Sources */,
 				D39A98021CD1F7A3005945FD /* CountryController.swift in Sources */,
