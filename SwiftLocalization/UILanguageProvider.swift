@@ -10,11 +10,11 @@ import Foundation
 import OnlineL10n
 
 class UILanguageProvider: LanguageProvider {
-    func languages() -> [String] {
+    @objc func languages() -> [String] {
         return ["Deutschland", "England"]
     }
 
-    func languageKeys(language: String) -> [String : String] {
+    @objc func languageKeys(language: String) -> [String : String] {
         if language == "Deutschland" {
             return ["top_label" : "Top Label Text auf Deutsch", "button" : "Ein Knopf", "text_field" : "Ein tolles Eingabefeld", "text_view" : "Eine mehrzeilige Text-Ansicht nicht\nbesonders\ndoll befüllt.", "segment_0" : "Deutsch", "segment_1" : "Englisch", "placeholder" : "Platzhaltertext", "de.ortinteractive.OnlineL10n.countrycontroller.title" : "Länderauswahl", "de.ortinteractive.OnlineL10n.countrycontroller.back" : "", "de.ortinteractive.OnlineL10n.countrycontroller.done" : "Fertig"]
         } else {
@@ -22,16 +22,16 @@ class UILanguageProvider: LanguageProvider {
         }
     }
 
-    func hasLanguage(language: String) -> Bool {
-        return language == "de" || language == "en"
+    @objc func hasLanguage(language: String) -> Bool {
+        return language == "Deutschland" || language == "England"
     }
 
     // do we provide flags for countries?
-    func hasFlags() -> Bool {
+    @objc func hasFlags() -> Bool {
         return true
     }
 
-    func flag(language: String) -> NSData? {
+    @objc func flag(language: String) -> NSData? {
         if (language == "Deutschland") {
             return UIImagePNGRepresentation(UIImage(named: "Germany")!)
         } else {

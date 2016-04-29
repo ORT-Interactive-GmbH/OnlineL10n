@@ -22,6 +22,6 @@ extension TestObject {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as! String
         })
-        self.text = manager.valueForKey(key)
+        self.text = manager.value(key)
     }
 }

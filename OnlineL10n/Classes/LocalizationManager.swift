@@ -12,7 +12,7 @@ import ReactiveCocoa
 public let LocalizationManagerUpdateLanguage = "LocalizationManagerUpdateLanguage"
 let LocalizationManagerCurrentLanguage = "LocalizationManagerCurrentLanguage"
 
-public class LocalizationManager {
+public class LocalizationManager: NSObject {
     // localizations are all stored in this map
     var localizations: [String: String] = [:]
     // language provider
@@ -30,6 +30,8 @@ public class LocalizationManager {
     public init(languageProvider: LanguageProvider, defaultLanguage: String, language: String?) {
         // set initial language provider
         self.languageProvider = languageProvider
+        // initialise super class
+        super.init()
         // determine the initial current language
         var selectedLanguage = language
         // get last selected language
@@ -57,7 +59,7 @@ public class LocalizationManager {
 
      - parameter index: selected language or country index
      */
-    public func selectLanguage(index: Int) {
+    public func selectLanguageByIndex(index: Int) {
         selectLanguage(self.languageProvider.languages()[index])
     }
 
@@ -115,7 +117,7 @@ public class LocalizationManager {
 
      - returns: localised string
      */
-    public func valueForKey(key: String) -> String {
+    public func value(key: String) -> String {
         var retVal = self.localizations[key]
         retVal = retVal ?? NSLocalizedString(key, comment: "String for key that has not been localized in language provider")
         return retVal == nil || retVal! == key ? "" : retVal!

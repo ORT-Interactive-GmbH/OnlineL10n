@@ -11,17 +11,17 @@ import OnlineL10n
 
 class TestLanguageProvider: LanguageProvider {
     // get languages
-    func languages() -> [String] {
+    @objc func languages() -> [String] {
         return ["Deutschland", "England"]
     }
 
     // check for one specified language
-    func hasLanguage(language: String) -> Bool {
+    @objc func hasLanguage(language: String) -> Bool {
         return true
     }
 
     // get all language keys for one specified language
-    func languageKeys(language: String) -> [String: String] {
+    @objc func languageKeys(language: String) -> [String: String] {
         if (language == "Deutschland") {
             return [ "a" : "b", "c" : "d" ]
         } else {
@@ -30,7 +30,12 @@ class TestLanguageProvider: LanguageProvider {
     }
 
     // do we provide flags for countries?
-    func hasFlags() -> Bool {
+    @objc func hasFlags() -> Bool {
         return false
+    }
+
+    // no flags are provided
+    @objc func flag(language: String) -> NSData? {
+        return nil
     }
 }

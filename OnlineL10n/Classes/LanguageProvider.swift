@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol LanguageProvider {
+@objc public protocol LanguageProvider {
     // get languages
     func languages() -> [String]
     // get all language keys for one specified language
@@ -19,17 +19,4 @@ public protocol LanguageProvider {
     func hasFlags() -> Bool
     // provide a flag for a country/language
     func flag(language: String) -> NSData?
-}
-
-// MARK: - Default implementation for "optinal" methods
-public extension LanguageProvider {
-    // by default, no flags are provided
-    func flag(language: String) -> NSData? {
-        return nil
-    }
-
-    // by default, no flags are provided
-    func hasFlags() -> Bool {
-        return false
-    }
 }

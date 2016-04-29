@@ -47,7 +47,7 @@ public class CountryController: UIViewController {
 
         if let current = selectedRow {
             tableView.cellForRowAtIndexPath(current)?.accessoryType = .Checkmark
-            self.localizationManager.selectLanguage(selectedRow!.row)
+            self.localizationManager.selectLanguageByIndex(selectedRow!.row)
         }
     }
 

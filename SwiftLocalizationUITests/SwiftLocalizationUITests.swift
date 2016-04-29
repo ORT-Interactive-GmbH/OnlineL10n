@@ -32,6 +32,7 @@ class SwiftLocalizationUITests: XCTestCase {
     func testUILocalization() {
         let app = XCUIApplication()
         app.segmentedControls.buttons["Englisch"].tap()
+        app.segmentedControls.buttons["Englisch"].tap()
         XCTAssert(app.textFields["text_field"].value as? String == "a beautiful text field", "Text does not match!")
         XCTAssert(app.textViews["text_view"].value as? String == "a multi-line text view which is\nnot\nentirely\nfilled.", "Text does not match!")
 
@@ -41,11 +42,10 @@ class SwiftLocalizationUITests: XCTestCase {
 
         app.buttons["button"].tap()
 
-        app.tables.staticTexts["en"].tap()
+        app.tables.staticTexts["England"].tap()
         app.navigationBars["Select country"].buttons["Done"].tap()
 
         XCTAssert(app.textFields["text_field"].value as? String == "a beautiful text field", "Text does not match!")
         XCTAssert(app.textViews["text_view"].value as? String == "a multi-line text view which is\nnot\nentirely\nfilled.", "Text does not match!")
-        app.segmentedControls.buttons["Englisch"].tap()
     }
 }

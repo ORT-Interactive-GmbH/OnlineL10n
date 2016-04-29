@@ -14,7 +14,7 @@ extension UILabel {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
-        self.text = manager.valueForKey(key)
+        self.text = manager.value(key)
     }
 }
 
@@ -23,14 +23,14 @@ extension UITextField {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
-        self.text = manager.valueForKey(key)
+        self.text = manager.value(key)
     }
 
     public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, placeholder: String) {
         manager.subscribeToChange(object, key: placeholder, block: { (x: AnyObject!) in
             self.placeholder = x as? String
         })
-        self.placeholder = manager.valueForKey(placeholder)
+        self.placeholder = manager.value(placeholder)
     }
 }
 
@@ -39,7 +39,7 @@ extension UITextView {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
-        self.text = manager.valueForKey(key)
+        self.text = manager.value(key)
     }
 }
 
@@ -48,7 +48,7 @@ extension UIButton {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forState: .Normal)
         })
-        self.setTitle(manager.valueForKey(key), forState: .Normal)
+        self.setTitle(manager.value(key), forState: .Normal)
     }
 }
 
@@ -57,7 +57,7 @@ extension UISegmentedControl {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forSegmentAtIndex: index)
         })
-        self.setTitle(manager.valueForKey(key), forSegmentAtIndex: index)
+        self.setTitle(manager.value(key), forSegmentAtIndex: index)
     }
 }
 
@@ -66,7 +66,7 @@ extension UIViewController {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
-        self.title = manager.valueForKey(key)
+        self.title = manager.value(key)
     }
 }
 
@@ -75,6 +75,6 @@ extension UIBarButtonItem {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
-        self.title = manager.valueForKey(key)
+        self.title = manager.value(key)
     }
 }
