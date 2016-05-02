@@ -29,11 +29,11 @@ public class CountryController: UIViewController {
         // bundle identifier might be something like org.cocoapods.OnlineL10n when installed through CocoaPods
         let bundle = NSBundle(forClass: CountryController.self)
         // set title string here
-        self.subscribeToLanguage(self, manager: self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.title")
+        self.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.title")
         // set back button title
-        self.backButton.subscribeToLanguage(self, manager: self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.back")
+        self.backButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.back")
         // set done button title
-        self.doneButton.subscribeToLanguage(self, manager: self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.done")
+        self.doneButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.done")
 
         doneButton.enabled = false
 

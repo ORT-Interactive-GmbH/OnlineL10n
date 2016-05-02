@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
         self.text = manager.value(key)
@@ -19,15 +19,15 @@ extension UILabel {
 }
 
 extension UITextField {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
         self.text = manager.value(key)
     }
 
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, placeholder: String) {
-        manager.subscribeToChange(object, key: placeholder, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, placeholder: String) {
+        manager.subscribeToChange(self, key: placeholder, block: { (x: AnyObject!) in
             self.placeholder = x as? String
         })
         self.placeholder = manager.value(placeholder)
@@ -35,8 +35,8 @@ extension UITextField {
 }
 
 extension UITextView {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
         self.text = manager.value(key)
@@ -44,8 +44,8 @@ extension UITextView {
 }
 
 extension UIButton {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forState: .Normal)
         })
         self.setTitle(manager.value(key), forState: .Normal)
@@ -53,8 +53,8 @@ extension UIButton {
 }
 
 extension UISegmentedControl {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String, index: Int) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String, index: Int) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forSegmentAtIndex: index)
         })
         self.setTitle(manager.value(key), forSegmentAtIndex: index)
@@ -62,8 +62,8 @@ extension UISegmentedControl {
 }
 
 extension UIViewController {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
         self.title = manager.value(key)
@@ -71,8 +71,8 @@ extension UIViewController {
 }
 
 extension UIBarButtonItem {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+    public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
+        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
         self.title = manager.value(key)

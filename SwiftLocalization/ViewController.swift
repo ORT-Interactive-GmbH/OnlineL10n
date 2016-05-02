@@ -28,14 +28,14 @@ class ViewController: UIViewController {
         self.manager = SharedManager.sharedInstance
 
         // bind to language keys
-        self.labelTop.subscribeToLanguage(self, key: "top_label")
-        self.labelContent.subscribeToLanguage(self, key: "content_label")
-        self.button.subscribeToLanguage(self, key: "button")
-        self.textField.subscribeToLanguage(self, key: "text_field")
-        self.textView.subscribeToLanguage(self, key: "text_view")
-        self.segmentedControl.subscribeToLanguage(self, key: "segment_0", index: 0)
-        self.segmentedControl.subscribeToLanguage(self, key: "segment_1", index: 1)
-        self.textFieldPlaceholder.subscribeToLanguage(self, placeholder: "placeholder")
+        self.labelTop.subscribeToLanguage("top_label")
+        self.labelContent.subscribeToLanguage("content_label")
+        self.button.subscribeToLanguage("button")
+        self.textField.subscribeToLanguage("text_field")
+        self.textView.subscribeToLanguage("text_view")
+        self.segmentedControl.subscribeToLanguage("segment_0", index: 0)
+        self.segmentedControl.subscribeToLanguage("segment_1", index: 1)
+        self.textFieldPlaceholder.subscribeToLanguagePlaceholder("placeholder")
     }
 
     @IBAction func onToggleSegmentedControl(sender: UISegmentedControl) {
