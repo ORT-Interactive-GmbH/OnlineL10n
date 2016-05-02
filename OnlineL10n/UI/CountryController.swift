@@ -10,6 +10,8 @@ public class CountryController: UIViewController {
 
     // localization manager has to be set before opening view
     public var localizationManager: LocalizationProvider!
+    private var previousLanguage: String?
+    private var selectedLanguage = ""
 
     var selectedRow: NSIndexPath? {
         didSet {
@@ -34,6 +36,8 @@ public class CountryController: UIViewController {
         self.backButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.back")
         // set done button title
         self.doneButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.done")
+        // keep initial language
+        self.previousLanguage = self.localizationManager.currentLanguage()
 
         doneButton.enabled = false
 
@@ -50,10 +54,10 @@ public class CountryController: UIViewController {
         if let current = selectedRow {
             tableView.cellForRowAtIndexPath(current)?.accessoryType = .Checkmark
             // select language
-            let lang = self.localizationManager.selectLanguageByIndex(selectedRow!.row)
+            self.selectedLanguage = self.localizationManager.selectLanguageByIndex(selectedRow!.row)
             // notify delegate
             if let del = delegate {
-                del.selectedLanguage(lang)
+                del.selectedLanguage(self.selectedLanguage)
             }
         }
     }
@@ -81,7 +85,7 @@ public class CountryController: UIViewController {
     @IBAction func onDone() {
         // notify delegate
         if let del = delegate {
-            del.onDoneButton()
+            del.onDoneButton(self.previousLanguage, toLanguage: self.selectedLanguage)
         } else {
             self.navigationController?.popViewControllerAnimated(true)
         }

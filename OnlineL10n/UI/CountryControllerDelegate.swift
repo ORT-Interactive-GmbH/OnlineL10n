@@ -12,7 +12,7 @@ import Foundation
     // implement navigation for back button here
     func onBackButton()
     // implement navigation for done button here
-    func onDoneButton()
+    func onDoneButton(fromLanguage: String?, toLanguage: String)
     // you might want to know, which language is selected
     func selectedLanguage(lang: String)
 }
