@@ -9,7 +9,7 @@
 public class CountryController: UIViewController {
 
     // localization manager has to be set before opening view
-    public var localizationManager: LocalizationManager!
+    public var localizationManager: LocalizationProvider!
 
     var selectedRow: NSIndexPath? {
         didSet {

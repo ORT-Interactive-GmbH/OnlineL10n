@@ -12,7 +12,7 @@ import ReactiveCocoa
 public let LocalizationManagerUpdateLanguage = "LocalizationManagerUpdateLanguage"
 let LocalizationManagerCurrentLanguage = "LocalizationManagerCurrentLanguage"
 
-public class LocalizationManager: NSObject {
+public class LocalizationManager: NSObject, LocalizationProvider {
     // localizations are all stored in this map
     var localizations: [String: String] = [:]
     // language provider
@@ -83,7 +83,10 @@ public class LocalizationManager: NSObject {
         for (key, value) in self.languageProvider.languageKeys(lang) {
             // update values in map
             self.localizations[key] = value
+        }
 
+        // send notifications after all values have been cached
+        for (key, value) in self.localizations {
             // notify subscribers
             NSNotificationCenter.defaultCenter().postNotificationName(LocalizationManagerUpdateLanguage, object: self, userInfo: [key: value])
         }

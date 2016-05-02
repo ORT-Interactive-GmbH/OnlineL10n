@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
@@ -19,14 +19,14 @@ extension UILabel {
 }
 
 extension UITextField {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
         self.text = manager.value(key)
     }
 
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, placeholder: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, placeholder: String) {
         manager.subscribeToChange(object, key: placeholder, block: { (x: AnyObject!) in
             self.placeholder = x as? String
         })
@@ -35,7 +35,7 @@ extension UITextField {
 }
 
 extension UITextView {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.text = x as? String
         })
@@ -44,7 +44,7 @@ extension UITextView {
 }
 
 extension UIButton {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forState: .Normal)
         })
@@ -53,7 +53,7 @@ extension UIButton {
 }
 
 extension UISegmentedControl {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String, index: Int) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String, index: Int) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.setTitle(x as? String, forSegmentAtIndex: index)
         })
@@ -62,7 +62,7 @@ extension UISegmentedControl {
 }
 
 extension UIViewController {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
@@ -71,7 +71,7 @@ extension UIViewController {
 }
 
 extension UIBarButtonItem {
-    public func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
+    public func subscribeToLanguage(object: AnyObject, manager: LocalizationProvider, key: String) {
         manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
             self.title = x as? String
         })
