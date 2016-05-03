@@ -87,8 +87,9 @@ public class LocalizationManager: NSObject, LocalizationProvider {
 
         // send notifications after all values have been cached
         for (key, value) in self.localizations {
+            let postVal = defaultValue(key, val: value)
             // notify subscribers
-            NSNotificationCenter.defaultCenter().postNotificationName(LocalizationManagerUpdateLanguage, object: self, userInfo: [key: value])
+            NSNotificationCenter.defaultCenter().postNotificationName(LocalizationManagerUpdateLanguage, object: self, userInfo: [key: postVal])
         }
 
         // store language as currently selected language
@@ -123,9 +124,15 @@ public class LocalizationManager: NSObject, LocalizationProvider {
      - returns: localised string
      */
     public func value(key: String) -> String {
-        var retVal = self.localizations[key]
-        retVal = retVal ?? NSLocalizedString(key, comment: "String for key that has not been localized in language provider")
-        return retVal == nil || retVal! == key ? "" : retVal!
+        return defaultValue(key, val: self.localizations[key])
+    }
+
+    private func defaultValue(key: String, val: String?) -> String {
+        var retVal = val
+        if retVal == nil || retVal! == key {
+           retVal = NSLocalizedString(key, comment: "String for key that has not been localized in language provider")
+        }
+        return retVal ?? ""
     }
 
     /**

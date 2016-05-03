@@ -7,3 +7,4 @@
 */
 
 "content_label" = "Dieser Text fehlt im LanguageProvider und wird aus der Localizable.strings gezogen";
+"top_label" = "Top label text in English";

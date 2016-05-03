@@ -32,7 +32,12 @@ class SwiftLocalizationUITests: XCTestCase {
     func testUILocalization() {
         let app = XCUIApplication()
         app.segmentedControls.buttons["Englisch"].tap()
-        app.segmentedControls.buttons["Englisch"].tap()
+
+        let translationComplete = app.staticTexts["Top label text in English"]
+        let exists = NSPredicate(format: "exists == true")
+        expectationForPredicate(exists, evaluatedWithObject: translationComplete, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+
         XCTAssert(app.textFields["text_field"].value as? String == "a beautiful text field", "Text does not match!")
         XCTAssert(app.textViews["text_view"].value as? String == "a multi-line text view which is\nnot\nentirely\nfilled.", "Text does not match!")
 
