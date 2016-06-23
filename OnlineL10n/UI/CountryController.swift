@@ -10,6 +10,7 @@ public class CountryController: UIViewController {
 
     // localization manager has to be set before opening view
     public var localizationManager: LocalizationProvider!
+    public var hideBackButton = false
     private var previousLanguage: String?
     private var selectedLanguage = ""
 
@@ -29,19 +30,28 @@ public class CountryController: UIViewController {
         super.viewDidLoad()
 
         // bundle identifier might be something like org.cocoapods.OnlineL10n when installed through CocoaPods
-        let bundle = NSBundle(forClass: CountryController.self)
+        let bundleIdentifier = NSBundle(forClass: CountryController.self).bundleIdentifier!
         // set title string here
-        self.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.title")
+        self.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.title")
         // set back button title
-        self.backButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.back")
+        self.backButton.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.back")
         // set done button title
-        self.doneButton.subscribeToLanguage(self.localizationManager, key: "\(bundle.bundleIdentifier!).countrycontroller.done")
+        self.doneButton.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.done")
         // keep initial language
         self.previousLanguage = self.localizationManager.currentLanguage()
 
         doneButton.enabled = false
 
         selectDefaultRow()
+    }
+
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // might not need back button
+        if self.hideBackButton {
+            self.navigationItem.leftBarButtonItem?.enabled = false
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
+        }
     }
 
     func selectionChanged(old oldSelection: NSIndexPath? = nil) {

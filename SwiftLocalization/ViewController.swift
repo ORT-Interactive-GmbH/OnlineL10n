@@ -52,6 +52,5 @@ class ViewController: UIViewController {
             let controller = segue.destinationViewController as! CountryController
             controller.localizationManager = self.manager
         }
-
     }
 }
