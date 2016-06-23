@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if ( segue.identifier == "showcountries" ) {
             let controller = segue.destinationViewController as! CountryController
+            controller.hideBackButton = true
             controller.localizationManager = self.manager
         }
     }

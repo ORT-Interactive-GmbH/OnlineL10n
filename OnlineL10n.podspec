@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OnlineL10n"
-  s.version      = "0.1.7"
+  s.version      = "0.1.8"
   s.summary      = "Online localization framework written in Swift"
 
   s.description  = <<-DESC

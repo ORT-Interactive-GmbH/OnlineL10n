@@ -46,12 +46,12 @@ public class CountryController: UIViewController {
     }
 
     public override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         // might not need back button
         if self.hideBackButton {
             self.navigationItem.leftBarButtonItem?.enabled = false
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
         }
+        super.viewWillAppear(animated)
     }
 
     func selectionChanged(old oldSelection: NSIndexPath? = nil) {
