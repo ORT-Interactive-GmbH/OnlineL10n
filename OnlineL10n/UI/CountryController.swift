@@ -14,7 +14,7 @@ public class CountryController: UIViewController {
     private var previousLanguage: String?
     private var selectedLanguage = ""
 
-    var selectedRow: NSIndexPath? {
+    var selectedRow: IndexPath? {
         didSet {
             self.selectionChanged(old: oldValue)
         }
@@ -27,47 +27,47 @@ public class CountryController: UIViewController {
     public var delegate: CountryControllerDelegate?
 
     override public func viewDidLoad() {
-        super.viewDidLoad()
-
         // bundle identifier might be something like org.cocoapods.OnlineL10n when installed through CocoaPods
-        let bundleIdentifier = NSBundle(forClass: CountryController.self).bundleIdentifier!
+        let bundleIdentifier = Bundle(for: CountryController.self).bundleIdentifier!
         // set title string here
-        self.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.title")
+        self.subscribeToLanguage(manager: self.localizationManager, key: "\(bundleIdentifier).countrycontroller.title")
         // set back button title
-        self.backButton.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.back")
+        self.backButton.subscribeToLanguage(manager: self.localizationManager, key: "\(bundleIdentifier).countrycontroller.back")
         // set done button title
-        self.doneButton.subscribeToLanguage(self.localizationManager, key: "\(bundleIdentifier).countrycontroller.done")
+        self.doneButton.subscribeToLanguage(manager: self.localizationManager, key: "\(bundleIdentifier).countrycontroller.done")
         // keep initial language
         self.previousLanguage = self.localizationManager.currentLanguage()
 
-        doneButton.enabled = false
+        doneButton.isEnabled = false
 
         selectDefaultRow()
+
+        super.viewDidLoad()
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         // might not need back button
         if self.hideBackButton {
-            self.navigationItem.leftBarButtonItem?.enabled = false
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clear
         }
         super.viewWillAppear(animated)
     }
 
-    func selectionChanged(old oldSelection: NSIndexPath? = nil) {
-        doneButton.enabled = selectedRow != nil
+    func selectionChanged(old oldSelection: IndexPath? = nil) {
+        doneButton.isEnabled = selectedRow != nil
 
         if let old = oldSelection {
-            tableView.cellForRowAtIndexPath(old)?.accessoryType = .None
+            tableView.cellForRow(at: old)?.accessoryType = .none
         }
 
         if let current = selectedRow {
-            tableView.cellForRowAtIndexPath(current)?.accessoryType = .Checkmark
+            tableView.cellForRow(at: current)?.accessoryType = .checkmark
             // select language
-            self.selectedLanguage = self.localizationManager.selectLanguageByIndex(selectedRow!.row)
+            self.selectedLanguage = self.localizationManager.selectLanguageBy(index: selectedRow!.row)
             // notify delegate
             if let del = delegate {
-                del.selectedLanguage(self.selectedLanguage)
+                del.selected(language: self.selectedLanguage)
             }
         }
     }
@@ -76,16 +76,16 @@ public class CountryController: UIViewController {
         selectedRow = findDefaultRow()
 
         if let sel = selectedRow {
-            tableView.scrollToRowAtIndexPath(sel, atScrollPosition: .Middle, animated: false)
+            tableView.scrollToRow(at: sel, at: .middle, animated: false)
         }
     }
 
-    func findDefaultRow() -> NSIndexPath? {
+    func findDefaultRow() -> IndexPath? {
         if let selectedLocale = self.localizationManager.currentLanguage() {
             let allLocales = self.localizationManager.languages()
 
-            if let index = allLocales.indexOf(selectedLocale) {
-                return NSIndexPath(forRow: index, inSection: 0)
+            if let index = allLocales.index(of: selectedLocale) {
+                return IndexPath(row: index, section: 0)
             }
         }
 
@@ -95,9 +95,9 @@ public class CountryController: UIViewController {
     @IBAction func onDone() {
         // notify delegate
         if let del = delegate {
-            del.onDoneButton(self.previousLanguage, toLanguage: self.selectedLanguage)
+            del.onDoneButton(fromLanguage: self.previousLanguage, toLanguage: self.selectedLanguage)
         } else {
-            self.navigationController?.popViewControllerAnimated(true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
 
@@ -106,28 +106,28 @@ public class CountryController: UIViewController {
         if let del = delegate {
             del.onBackButton()
         } else {
-            self.navigationController?.popViewControllerAnimated(true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
 }
 
 extension CountryController : UITableViewDataSource {
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.localizationManager == nil ? 0 : self.localizationManager.languageCount()
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let country = self.localizationManager.languages()[indexPath.row]
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(CountryCellStoryboardId, forIndexPath: indexPath) as! CountryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryCellStoryboardId, for: indexPath) as! CountryCell
 
-        cell.accessoryType = (indexPath == selectedRow) ? .Checkmark : .None
+        cell.accessoryType = (indexPath == selectedRow) ? .checkmark : .none
         cell.labelName.text = country
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
         if (self.localizationManager.hasFlags()) {
-            cell.displayFlag(self.localizationManager.flag(country))
+            cell.display(flag: self.localizationManager.flag(language: country))
         } else {
-            cell.displayFlag(nil)
+            cell.display(flag: nil)
         }
 
         return cell
@@ -135,7 +135,7 @@ extension CountryController : UITableViewDataSource {
 }
 
 extension CountryController : UITableViewDelegate {
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRow = indexPath
     }
 }

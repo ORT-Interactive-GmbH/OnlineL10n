@@ -35,8 +35,8 @@ class SwiftLocalizationUITests: XCTestCase {
 
         let translationComplete = app.staticTexts["Top label text in English"]
         let exists = NSPredicate(format: "exists == true")
-        expectationForPredicate(exists, evaluatedWithObject: translationComplete, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectation(for: exists, evaluatedWith: translationComplete, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
 
         XCTAssert(app.textFields["text_field"].value as? String == "a beautiful text field", "Text does not match!")
         XCTAssert(app.textViews["text_view"].value as? String == "a multi-line text view which is\nnot\nentirely\nfilled.", "Text does not match!")

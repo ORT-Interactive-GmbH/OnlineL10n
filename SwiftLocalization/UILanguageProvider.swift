@@ -22,7 +22,7 @@ class UILanguageProvider: LanguageProvider {
         }
     }
 
-    @objc func hasLanguage(language: String) -> Bool {
+    @objc func has(language: String) -> Bool {
         return language == "Deutschland" || language == "England"
     }
 
@@ -31,7 +31,7 @@ class UILanguageProvider: LanguageProvider {
         return true
     }
 
-    @objc func flag(language: String) -> NSData? {
+    @objc func flag(language: String) -> Data? {
         if (language == "Deutschland") {
             return UIImagePNGRepresentation(UIImage(named: "Germany")!)
         } else {

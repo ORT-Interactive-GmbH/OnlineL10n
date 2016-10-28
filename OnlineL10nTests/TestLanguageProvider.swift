@@ -16,7 +16,7 @@ class TestLanguageProvider: LanguageProvider {
     }
 
     // check for one specified language
-    @objc func hasLanguage(language: String) -> Bool {
+    @objc func has(language: String) -> Bool {
         return true
     }
 
@@ -35,7 +35,7 @@ class TestLanguageProvider: LanguageProvider {
     }
 
     // no flags are provided
-    @objc func flag(language: String) -> NSData? {
+    @objc func flag(language: String) -> Data? {
         return nil
     }
 }

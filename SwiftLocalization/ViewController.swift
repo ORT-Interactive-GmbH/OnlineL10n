@@ -38,18 +38,18 @@ class ViewController: UIViewController {
         self.textFieldPlaceholder.subscribeToLanguagePlaceholder("placeholder")
     }
 
-    @IBAction func onToggleSegmentedControl(sender: UISegmentedControl) {
+    @IBAction func onToggleSegmentedControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
-            self.manager?.selectLanguage("England")
+            self.manager?.select(language: "England")
         default:
-            self.manager?.selectLanguage("Deutschland")
+            self.manager?.select(language: "Deutschland")
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if ( segue.identifier == "showcountries" ) {
-            let controller = segue.destinationViewController as! CountryController
+            let controller = segue.destination as! CountryController
             controller.hideBackButton = true
             controller.localizationManager = self.manager
         }

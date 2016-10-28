@@ -11,70 +11,70 @@ import UIKit
 
 extension UILabel {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
             self.text = x as? String
         })
-        self.text = manager.value(key)
+        self.text = manager.value(key: key)
     }
 }
 
 extension UITextField {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
             self.text = x as? String
         })
-        self.text = manager.value(key)
+        self.text = manager.value(key: key)
     }
 
     public func subscribeToLanguage(manager: LocalizationProvider, placeholder: String) {
-        manager.subscribeToChange(self, key: placeholder, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: placeholder, block: { (x: Any?) in
             self.placeholder = x as? String
         })
-        self.placeholder = manager.value(placeholder)
+        self.placeholder = manager.value(key: placeholder)
     }
 }
 
 extension UITextView {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
             self.text = x as? String
         })
-        self.text = manager.value(key)
+        self.text = manager.value(key: key)
     }
 }
 
 extension UIButton {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
-            self.setTitle(x as? String, forState: .Normal)
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
+            self.setTitle(x as? String, for: .normal)
         })
-        self.setTitle(manager.value(key), forState: .Normal)
+        self.setTitle(manager.value(key: key), for: .normal)
     }
 }
 
 extension UISegmentedControl {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String, index: Int) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
-            self.setTitle(x as? String, forSegmentAtIndex: index)
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
+            self.setTitle(x as? String, forSegmentAt: index)
         })
-        self.setTitle(manager.value(key), forSegmentAtIndex: index)
+        self.setTitle(manager.value(key: key), forSegmentAt: index)
     }
 }
 
 extension UIViewController {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
             self.title = x as? String
         })
-        self.title = manager.value(key)
+        self.title = manager.value(key: key)
     }
 }
 
 extension UIBarButtonItem {
     public func subscribeToLanguage(manager: LocalizationProvider, key: String) {
-        manager.subscribeToChange(self, key: key, block: { (x: AnyObject!) in
+        manager.subscribeToChange(object: self, key: key, block: { (x: Any?) in
             self.title = x as? String
         })
-        self.title = manager.value(key)
+        self.title = manager.value(key: key)
     }
 }

@@ -4,7 +4,7 @@ The OnlineL10n library uses data binding technologies to bind interface elements
 
 If you need an example, simply clone the library and run the application in simulator. An example language switching interface is part of the library and can be included via storyboard reference.
 
-Data binding is implemented using [ReactiveCocoa][3] library. So even if you _don't_ need online localization, at least you have a miniature example for how to use data binding with [ReactiveCocoa][3] :wink:
+Data binding is implemented using [ReactiveObjC][3] library. So even if you _don't_ need online localization, at least you have a miniature example for how to use data binding with [ReactiveObjC][3] :wink:
 
 ## Installation
 
@@ -52,7 +52,7 @@ class SharedManager {
 }
 ```
 
-And provide your own class implementing the `LanguageProvider` protocol, like the `UILanguageProvider` in the example above:
+And provide your own class implementing the `LanguageProvider` protocol, like the `UILanguageProvider` in the example below:
 ``` Swift
 import OnlineL10n
 
@@ -72,7 +72,7 @@ class UILanguageProvider: LanguageProvider {
     }
 
     // check for one specified language
-    func hasLanguage(language: String) -> Bool {
+    func has(language: String) -> Bool {
         return language == "de" || language == "en"
     }
 
@@ -82,7 +82,7 @@ class UILanguageProvider: LanguageProvider {
     }
 
     // provide a flag for a country/language
-    func flag(language: String) -> NSData? {
+    func flag(language: String) -> Data? {
         if (language == "de") {
             return UIImagePNGRepresentation(UIImage(named: "Germany")!)
         } else {
@@ -105,8 +105,8 @@ Example flag icons taken from [icondrawer][1].
   
 The code is available as github [project][home] under [MIT licence][2].
   
-   [home]: https://github.com/swesteme/OnlineL10n
+   [home]: https://github.com/ORT-Interactive-GmbH/OnlineL10n
    [1]: http://www.icondrawer.com
    [2]: http://revolunet.mit-license.org
-   [3]: https://github.com/ReactiveCocoa/ReactiveCocoa
+   [3]: https://github.com/ReactiveCocoa/ReactiveObjC
    [4]: http://cocoapods.org

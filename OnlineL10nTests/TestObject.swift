@@ -18,10 +18,10 @@ class TestObject {
 }
 
 extension TestObject {
-     func subscribeToLanguage(object: AnyObject, manager: LocalizationManager, key: String) {
-        manager.subscribeToChange(object, key: key, block: { (x: AnyObject!) in
+     func subscribeToLanguage(_ object: AnyObject, manager: LocalizationManager, key: String) {
+        manager.subscribeToChange(object: object, key: key, block: { (x: Any?) in
             self.text = x as! String
         })
-        self.text = manager.value(key)
+        self.text = manager.value(key: key)
     }
 }

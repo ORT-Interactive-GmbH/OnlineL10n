@@ -21,14 +21,14 @@ import Foundation
 
      - parameter index: selected language or country index
      */
-    func selectLanguageByIndex(index: Int) -> String
+    func selectLanguageBy(index: Int) -> String
 
     /**
      Select language and update internal map of language keys
 
-     - parameter lang: selected language or country
+     - parameter language: selected language or country
      */
-    func selectLanguage(lang: String)
+    func select(language: String)
 
     /**
      Get all available languages
@@ -67,7 +67,7 @@ import Foundation
 
      - returns: flag as data object
      */
-    func flag(language: String) -> NSData?
+    func flag(language: String) -> Data?
 
     /**
      Subscribe to changes in language strings
@@ -76,5 +76,5 @@ import Foundation
      - parameter key:    language key to filter for
      - parameter block:  block that is used to update language values in user interface or model
      */
-    func subscribeToChange(object: AnyObject, key: String, block: ((AnyObject!) -> Void)!)
+    func subscribeToChange(object: AnyObject, key: String, block: ((Any?) -> Void)!)
 }

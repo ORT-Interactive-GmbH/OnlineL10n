@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ReactiveCocoa
+import ReactiveObjC
 @testable import OnlineL10n
 
 class OnlineL18NTests: XCTestCase {
@@ -35,7 +35,7 @@ class OnlineL18NTests: XCTestCase {
         XCTAssert(testObject.text == "b", "String is not initialised")
 
         // select a language
-        manager.selectLanguage("en")
+        manager.select(language: "en")
 
         XCTAssert(testObject.text == "e", "String is not updated correctly")
     }

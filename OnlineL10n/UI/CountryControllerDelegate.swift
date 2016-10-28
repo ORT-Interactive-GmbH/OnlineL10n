@@ -14,5 +14,5 @@ import Foundation
     // implement navigation for done button here
     func onDoneButton(fromLanguage: String?, toLanguage: String)
     // you might want to know, which language is selected
-    func selectedLanguage(lang: String)
+    func selected(language: String)
 }

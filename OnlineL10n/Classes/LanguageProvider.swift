@@ -14,9 +14,9 @@ import Foundation
     // get all language keys for one specified language
     func languageKeys(language: String) -> [String: String]
     // check for one specified language
-    func hasLanguage(language: String) -> Bool
+    func has(language: String) -> Bool
     // do we provide flags for countries?
     func hasFlags() -> Bool
     // provide a flag for a country/language
-    func flag(language: String) -> NSData?
+    func flag(language: String) -> Data?
 }

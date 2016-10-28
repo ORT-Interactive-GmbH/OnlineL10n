@@ -7,10 +7,13 @@
 //
 
 import Foundation
-import ReactiveCocoa
+import ReactiveObjC
 
-public let LocalizationManagerUpdateLanguage = "LocalizationManagerUpdateLanguage"
 let LocalizationManagerCurrentLanguage = "LocalizationManagerCurrentLanguage"
+
+extension Notification.Name {
+    static let localizationManagerUpdateLanguage = Notification.Name("LocalizationManagerUpdateLanguage")
+}
 
 public class LocalizationManager: NSObject, LocalizationProvider {
     // localizations are all stored in this map
@@ -42,7 +45,7 @@ public class LocalizationManager: NSObject, LocalizationProvider {
             }
         }
         // set default language
-        self.selectLanguage(selectedLanguage!)
+        self.select(language: selectedLanguage!)
     }
 
     /**
@@ -51,7 +54,7 @@ public class LocalizationManager: NSObject, LocalizationProvider {
      - returns: currently selected language or nil
      */
     public func currentLanguage() -> String? {
-        return NSUserDefaults.standardUserDefaults().stringForKey(LocalizationManagerCurrentLanguage)
+        return UserDefaults.standard.string(forKey: LocalizationManagerCurrentLanguage)
     }
 
     /**
@@ -59,19 +62,19 @@ public class LocalizationManager: NSObject, LocalizationProvider {
 
      - parameter index: selected language or country index
      */
-    public func selectLanguageByIndex(index: Int) -> String {
+    public func selectLanguageBy(index: Int) -> String {
         let language = self.languageProvider.languages()[index]
-        selectLanguage(language)
+        select(language: language)
         return language
     }
 
     /**
      Select language and update internal map of language keys
 
-     - parameter lang: selected language or country
+     - parameter language: selected language or country
      */
-    public func selectLanguage(lang: String) {
-        guard (self.languageProvider.hasLanguage(lang)) else {
+    public func select(language: String) {
+        guard (self.languageProvider.has(language: language)) else {
             // TODO: exception?
             return
         }
@@ -80,21 +83,21 @@ public class LocalizationManager: NSObject, LocalizationProvider {
         self.localizations.removeAll()
 
         // get new values
-        for (key, value) in self.languageProvider.languageKeys(lang) {
+        for (key, value) in self.languageProvider.languageKeys(language: language) {
             // update values in map
             self.localizations[key] = value
         }
 
         // send notifications after all values have been cached
         for (key, value) in self.localizations {
-            let postVal = defaultValue(key, val: value)
+            let postVal = defaultValue(key: key, val: value)
             // notify subscribers
-            NSNotificationCenter.defaultCenter().postNotificationName(LocalizationManagerUpdateLanguage, object: self, userInfo: [key: postVal])
+            NotificationCenter.default.post(name: .localizationManagerUpdateLanguage, object: self, userInfo: [key: postVal])
         }
 
         // store language as currently selected language
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(lang, forKey: LocalizationManagerCurrentLanguage)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(language, forKey: LocalizationManagerCurrentLanguage)
         userDefaults.synchronize()
     }
 
@@ -124,7 +127,7 @@ public class LocalizationManager: NSObject, LocalizationProvider {
      - returns: localised string
      */
     public func value(key: String) -> String {
-        return defaultValue(key, val: self.localizations[key])
+        return defaultValue(key: key, val: self.localizations[key])
     }
 
     private func defaultValue(key: String, val: String?) -> String {
@@ -151,8 +154,8 @@ public class LocalizationManager: NSObject, LocalizationProvider {
 
      - returns: flag as data object
      */
-    public func flag(language: String) -> NSData? {
-        return self.languageProvider.flag(language)
+    public func flag(language: String) -> Data? {
+        return self.languageProvider.flag(language: language)
     }
 
     /**
@@ -162,15 +165,15 @@ public class LocalizationManager: NSObject, LocalizationProvider {
      - parameter key:    language key to filter for
      - parameter block:  block that is used to update language values in user interface or model
      */
-    public func subscribeToChange(object: AnyObject, key: String, block: ((AnyObject!) -> Void)!) {
-        NSNotificationCenter.defaultCenter()
-            .rac_addObserverForName(LocalizationManagerUpdateLanguage, object: nil)
-            .takeUntil(object.rac_willDeallocSignal())
-            .filter({(x: AnyObject!) -> Bool in
+    public func subscribeToChange(object: AnyObject, key: String, block: ((Any?) -> Void)!) {
+        NotificationCenter.default
+            .rac_addObserver(forName: Notification.Name.localizationManagerUpdateLanguage.rawValue, object: nil)
+            .take(until: object.rac_willDeallocSignal())
+            .filter({(x: Any?) -> Bool in
                 let notification = x as! NSNotification
-                return notification.userInfo != nil && notification.userInfo!.indexForKey(key) != nil
+                return notification.userInfo != nil && notification.userInfo!.index(forKey: key) != nil
             })
-            .map({(x: AnyObject!) -> AnyObject in
+            .map({(x: Any?) -> Any? in
                 let notification = x as! NSNotification
                 return notification.userInfo![key]!
             })

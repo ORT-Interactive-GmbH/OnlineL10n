@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OnlineL10n"
-  s.version      = "0.1.8"
+  s.version      = "0.2.0"
   s.summary      = "Online localization framework written in Swift"
 
   s.description  = <<-DESC
@@ -123,9 +123,9 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
 
-  s.dependency "ReactiveCocoa"
-  s.dependency 'Result'
+  s.dependency 'ReactiveObjC'
 
 end

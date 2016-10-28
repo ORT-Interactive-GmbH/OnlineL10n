@@ -12,5 +12,5 @@ import OnlineL10n
 class SharedManager {
     static let sharedInstance = LocalizationManager(languageProvider: UILanguageProvider(), defaultLanguage: "Deutschland", language: "Deutschland")
 
-    private init() {}
+    fileprivate init() {}
 }
