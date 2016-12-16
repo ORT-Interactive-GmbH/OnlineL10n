@@ -68,9 +68,19 @@ import Foundation
      - returns: flag as data object
      */
     func flag(language: String) -> Data?
-
+    
     /**
-     Subscribe to changes in language strings
+     Get the flag for a country/language asynchronously. Method is not called if other "flag" function already
+     returned an image in synchronous call.
+
+     - parameter language: language key
+
+     - parameter callback: callback function to set image with
+     */
+    func flag(language: String, callback: (_ language: String, _ image: Data) -> Void)
+    
+    /**
+     Subscribe to changes in language strings.
 
      - parameter object: reference object determining the lifetime of this subscription
      - parameter key:    language key to filter for

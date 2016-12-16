@@ -159,6 +159,17 @@ public class LocalizationManager: NSObject, LocalizationProvider {
     }
 
     /**
+     Get the flag for a country/language asynchronously
+
+     - parameter language: language key
+
+     - parameter callback: callback function to set image with
+     */
+    public func flag(language: String, callback: (_ language: String, _ image: Data) -> Void) {
+        self.languageProvider.flag(language: language, callback: callback)
+    }
+
+    /**
      Subscribe to changes in language strings
 
      - parameter object: reference object determining the lifetime of this subscription

@@ -38,4 +38,7 @@ class UILanguageProvider: LanguageProvider {
             return UIImagePNGRepresentation(UIImage(named: "England")!)
         }
     }
+
+    @objc func flag(language: String, callback: (_ language: String, _ image: Data) -> Void) {
+    }
 }

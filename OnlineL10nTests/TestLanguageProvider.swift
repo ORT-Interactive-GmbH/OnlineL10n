@@ -38,4 +38,8 @@ class TestLanguageProvider: LanguageProvider {
     @objc func flag(language: String) -> Data? {
         return nil
     }
+
+    // no flags are provided
+    @objc func flag(language: String, callback: (_ language: String, _ image: Data) -> Void) {
+    }
 }

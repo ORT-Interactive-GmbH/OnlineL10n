@@ -125,7 +125,13 @@ extension CountryController : UITableViewDataSource {
         cell.labelName.text = country
         cell.layoutMargins = UIEdgeInsets.zero
         if (self.localizationManager.hasFlags()) {
-            cell.display(flag: self.localizationManager.flag(language: country))
+            if let flag = self.localizationManager.flag(language: country) {
+                cell.display(flag: flag)
+            } else {
+                self.localizationManager.flag(language: country) { (cntry: String, image: Data?) in
+                    cell.display(flag: image)
+                }
+            }
         } else {
             cell.display(flag: nil)
         }
