@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OnlineL10n"
-  s.version      = "0.2.1"
+  s.version      = "0.3.0"
   s.summary      = "Online localization framework written in Swift"
 
   s.description  = <<-DESC
@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Sebastian Westemeyer" => "sebastian.westemeyer@ort-online.net" }
+  s.author             = { "Sebastian Westemeyer" => "tim.christmann@ort-online.net" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
