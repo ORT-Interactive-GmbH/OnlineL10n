@@ -30,7 +30,7 @@ public class LocalizationManager: NSObject, LocalizationProvider {
 
      - returns: new instance of instancetype
      */
-    public init(languageProvider: LanguageProvider, defaultLanguage: String, language: String?) {
+    @objc public init(languageProvider: LanguageProvider, defaultLanguage: String, language: String?) {
         // set initial language provider
         self.languageProvider = languageProvider
         // initialise super class
