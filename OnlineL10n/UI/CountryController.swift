@@ -9,7 +9,7 @@
 public class CountryController: UIViewController {
 
     // localization manager has to be set before opening view
-    public var localizationManager: LocalizationProvider!
+    @objc public var localizationManager: LocalizationProvider!
     public var hideBackButton = false
     private var previousLanguage: String?
     private var selectedLanguage = ""
@@ -24,7 +24,7 @@ public class CountryController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
-    public var delegate: CountryControllerDelegate?
+    @objc public var delegate: CountryControllerDelegate?
 
     override public func viewDidLoad() {
         // bundle identifier might be something like org.cocoapods.OnlineL10n when installed through CocoaPods
