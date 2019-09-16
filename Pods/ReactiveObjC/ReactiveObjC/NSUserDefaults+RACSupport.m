@@ -7,7 +7,7 @@
 //
 
 #import "NSUserDefaults+RACSupport.h"
-#import <ReactiveObjC/EXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 #import "NSNotificationCenter+RACSupport.h"
 #import "NSObject+RACDeallocating.h"
 #import "RACChannel.h"
@@ -17,6 +17,8 @@
 @implementation NSUserDefaults (RACSupport)
 
 - (RACChannelTerminal *)rac_channelTerminalForKey:(NSString *)key {
+	NSParameterAssert(key != nil);
+
 	RACChannel *channel = [RACChannel new];
 	
 	RACScheduler *scheduler = [RACScheduler scheduler];

@@ -33,9 +33,9 @@ class UILanguageProvider: LanguageProvider {
 
     @objc func flag(language: String) -> Data? {
         if (language == "Deutschland") {
-            return UIImagePNGRepresentation(UIImage(named: "Germany")!)
+            return UIImage(named: "Germany")!.pngData()
         } else {
-            return UIImagePNGRepresentation(UIImage(named: "England")!)
+            return UIImage(named: "England")!.pngData()
         }
     }
 

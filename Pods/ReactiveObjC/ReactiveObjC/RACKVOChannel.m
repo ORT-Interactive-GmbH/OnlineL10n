@@ -7,7 +7,7 @@
 //
 
 #import "RACKVOChannel.h"
-#import <ReactiveObjC/EXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 #import "NSObject+RACDeallocating.h"
 #import "NSObject+RACKVOWrapper.h"
 #import "NSString+RACKeyPathUtilities.h"
@@ -69,13 +69,12 @@ static NSString * const RACKVOChannelDataDictionaryKey = @"RACKVOChannelKey";
 
 #pragma mark Lifecycle
 
-- (id)initWithTarget:(__weak NSObject *)target keyPath:(NSString *)keyPath nilValue:(id)nilValue {
+- (instancetype)initWithTarget:(__weak NSObject *)target keyPath:(NSString *)keyPath nilValue:(id)nilValue {
 	NSCParameterAssert(keyPath.rac_keyPathComponents.count > 0);
 
 	NSObject *strongTarget = target;
 
 	self = [super init];
-	if (self == nil) return nil;
 
 	_target = target;
 	_keyPath = [keyPath copy];

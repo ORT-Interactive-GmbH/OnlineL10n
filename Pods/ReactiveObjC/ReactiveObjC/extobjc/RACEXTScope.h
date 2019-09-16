@@ -7,7 +7,7 @@
 //  Released under the MIT license.
 //
 
-#import "metamacros.h"
+#import "RACmetamacros.h"
 
 /**
  * \@onExit defines some code to be executed when the current scope exits. The
@@ -88,7 +88,7 @@
     _Pragma("clang diagnostic pop")
 
 /*** implementation details follow ***/
-typedef void (^rac_cleanupBlock_t)();
+typedef void (^rac_cleanupBlock_t)(void);
 
 static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) {
     (*block)();

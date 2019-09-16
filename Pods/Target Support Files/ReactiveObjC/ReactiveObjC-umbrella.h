@@ -32,6 +32,7 @@
 #import "NSString+RACSupport.h"
 #import "NSURLConnection+RACSupport.h"
 #import "NSUserDefaults+RACSupport.h"
+#import "RACAnnotations.h"
 #import "RACArraySequence.h"
 #import "RACBehaviorSubject.h"
 #import "RACBlockTrampoline.h"
@@ -97,9 +98,9 @@
 #import "UITableViewHeaderFooterView+RACSignalSupport.h"
 #import "UITextField+RACSignalSupport.h"
 #import "UITextView+RACSignalSupport.h"
-#import "EXTKeyPathCoding.h"
-#import "EXTScope.h"
-#import "metamacros.h"
+#import "RACEXTKeyPathCoding.h"
+#import "RACEXTScope.h"
+#import "RACmetamacros.h"
 
 FOUNDATION_EXPORT double ReactiveObjCVersionNumber;
 FOUNDATION_EXPORT const unsigned char ReactiveObjCVersionString[];

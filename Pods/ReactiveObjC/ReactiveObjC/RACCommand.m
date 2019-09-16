@@ -7,7 +7,7 @@
 //
 
 #import "RACCommand.h"
-#import <ReactiveObjC/EXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 #import "NSArray+RACSequenceAdditions.h"
 #import "NSObject+RACDeallocating.h"
 #import "NSObject+RACDescription.h"
@@ -19,10 +19,8 @@
 #import "RACSignal+Operations.h"
 #import <libkern/OSAtomic.h>
 
-NSString * const RACCommandErrorDomain = @"RACCommandErrorDomain";
+NSErrorDomain const RACCommandErrorDomain = @"RACCommandErrorDomain";
 NSString * const RACUnderlyingCommandErrorKey = @"RACUnderlyingCommandErrorKey";
-
-const NSInteger RACCommandErrorNotEnabled = 1;
 
 @interface RACCommand () {
 	// Atomic backing variable for `allowsConcurrentExecution`.
@@ -65,12 +63,12 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 
 #pragma mark Lifecycle
 
-- (id)init {
+- (instancetype)init {
 	NSCAssert(NO, @"Use -initWithSignalBlock: instead");
 	return nil;
 }
 
-- (id)initWithSignalBlock:(RACSignal * (^)(id input))signalBlock {
+- (instancetype)initWithSignalBlock:(RACSignal<id> * (^)(id input))signalBlock {
 	return [self initWithEnabled:nil signalBlock:signalBlock];
 }
 
@@ -79,11 +77,10 @@ const NSInteger RACCommandErrorNotEnabled = 1;
 	[_allowsConcurrentExecutionSubject sendCompleted];
 }
 
-- (id)initWithEnabled:(RACSignal *)enabledSignal signalBlock:(RACSignal * (^)(id input))signalBlock {
+- (instancetype)initWithEnabled:(RACSignal *)enabledSignal signalBlock:(RACSignal<id> * (^)(id input))signalBlock {
 	NSCParameterAssert(signalBlock != nil);
 
 	self = [super init];
-	if (self == nil) return nil;
 
 	_addedExecutionSignalsSubject = [RACSubject new];
 	_allowsConcurrentExecutionSubject = [RACSubject new];

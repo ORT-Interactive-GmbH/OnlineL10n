@@ -7,7 +7,7 @@
 //
 
 #import "RACSubject.h"
-#import <ReactiveObjC/EXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 #import "RACCompoundDisposable.h"
 #import "RACPassthroughSubscriber.h"
 
@@ -35,7 +35,7 @@
 	return [[self alloc] init];
 }
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (self == nil) return nil;
 

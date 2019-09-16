@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// The domain for errors originating within `RACCommand`.
-extern NSString * const RACCommandErrorDomain;
+extern NSErrorDomain const RACCommandErrorDomain;
 
-/// -execute: was invoked while the command was disabled.
-extern const NSInteger RACCommandErrorNotEnabled;
+typedef NS_ERROR_ENUM(RACCommandErrorDomain, RACCommandError) {
+	/// -execute: was invoked while the command was disabled.
+	RACCommandErrorNotEnabled = 1,
+};
 
 /// A `userInfo` key for an error, associated with the `RACCommand` that the
 /// error originated from.
@@ -25,7 +28,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 
 /// A command is a signal triggered in response to some action, typically
 /// UI-related.
-@interface RACCommand<__contravariant InputType> : NSObject
+@interface RACCommand<__contravariant InputType, __covariant ValueType> : NSObject
 
 /// A signal of the signals returned by successful invocations of -execute:
 /// (i.e., while the receiver is `enabled`).
@@ -36,7 +39,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 /// 
 /// Only executions that begin _after_ subscription will be sent upon this
 /// signal. All inner signals will arrive upon the main thread.
-@property (nonatomic, strong, readonly) RACSignal *executionSignals;
+@property (nonatomic, strong, readonly) RACSignal<RACSignal<ValueType> *> *executionSignals;
 
 /// A signal of whether this command is currently executing.
 ///
@@ -46,7 +49,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 ///
 /// This signal will send its current value upon subscription, and then all
 /// future values on the main thread.
-@property (nonatomic, strong, readonly) RACSignal *executing;
+@property (nonatomic, strong, readonly) RACSignal<NSNumber *> *executing;
 
 /// A signal of whether this command is able to execute.
 ///
@@ -60,7 +63,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 ///
 /// This signal will send its current value upon subscription, and then all
 /// future values on the main thread.
-@property (nonatomic, strong, readonly) RACSignal *enabled;
+@property (nonatomic, strong, readonly) RACSignal<NSNumber *> *enabled;
 
 /// Forwards any errors that occur within signals returned by -execute:.
 ///
@@ -70,7 +73,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 ///
 /// After subscription, this signal will send all future errors on the main
 /// thread.
-@property (nonatomic, strong, readonly) RACSignal *errors;
+@property (nonatomic, strong, readonly) RACSignal<NSError *> *errors;
 
 /// Whether the command allows multiple executions to proceed concurrently.
 ///
@@ -78,7 +81,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 @property (atomic, assign) BOOL allowsConcurrentExecution;
 
 /// Invokes -initWithEnabled:signalBlock: with a nil `enabledSignal`.
-- (id)initWithSignalBlock:(RACSignal * (^)(InputType _Nullable input))signalBlock;
+- (instancetype)initWithSignalBlock:(RACSignal<ValueType> * (^)(InputType _Nullable input))signalBlock;
 
 /// Initializes a command that is conditionally enabled.
 ///
@@ -93,7 +96,7 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 ///                 to a replay subject, sent on `executionSignals`, then
 ///                 subscribed to synchronously. Neither the block nor the
 ///                 returned signal may be nil.
-- (id)initWithEnabled:(nullable RACSignal *)enabledSignal signalBlock:(RACSignal * (^)(InputType _Nullable input))signalBlock;
+- (instancetype)initWithEnabled:(nullable RACSignal<NSNumber *> *)enabledSignal signalBlock:(RACSignal<ValueType> * (^)(InputType _Nullable input))signalBlock;
 
 /// If the receiver is enabled, this method will:
 ///
@@ -108,20 +111,8 @@ extern NSString * const RACUnderlyingCommandErrorKey;
 /// Returns the multicasted signal, after subscription. If the receiver is not
 /// enabled, returns a signal that will send an error with code
 /// RACCommandErrorNotEnabled.
-- (RACSignal *)execute:(nullable InputType)input;
+- (RACSignal<ValueType> *)execute:(nullable InputType)input;
 
-NS_ASSUME_NONNULL_END
 @end
 
-@interface RACCommand (Unavailable)
-NS_ASSUME_NONNULL_BEGIN
-
-@property (atomic, readonly) BOOL canExecute __attribute__((unavailable("Use the 'enabled' signal instead")));
-
-+ (instancetype)command __attribute__((unavailable("Use -initWithSignalBlock: instead")));
-+ (instancetype)commandWithCanExecuteSignal:(RACSignal *)canExecuteSignal __attribute__((unavailable("Use -initWithEnabled:signalBlock: instead")));
-- (id)initWithCanExecuteSignal:(RACSignal *)canExecuteSignal __attribute__((unavailable("Use -initWithEnabled:signalBlock: instead")));
-- (RACSignal *)addSignalBlock:(RACSignal * (^)(id value))signalBlock __attribute__((unavailable("Pass the signalBlock to -initWithSignalBlock: instead")));
-
 NS_ASSUME_NONNULL_END
-@end

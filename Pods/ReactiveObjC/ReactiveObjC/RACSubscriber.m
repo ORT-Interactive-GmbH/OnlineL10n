@@ -8,7 +8,7 @@
 
 #import "RACSubscriber.h"
 #import "RACSubscriber+Private.h"
-#import <ReactiveObjC/EXTScope.h>
+#import <ReactiveObjC/RACEXTScope.h>
 #import "RACCompoundDisposable.h"
 
 @interface RACSubscriber ()
@@ -36,9 +36,8 @@
 	return subscriber;
 }
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
-	if (self == nil) return nil;
 
 	@unsafeify(self);
 

@@ -17,9 +17,8 @@
 
 #pragma mark API
 
-- (id)initWithBlock:(id)block {
+- (instancetype)initWithBlock:(id)block {
 	self = [super init];
-	if (self == nil) return nil;
 
 	_block = [block copy];
 
@@ -29,7 +28,7 @@
 + (id)invokeBlock:(id)block withArguments:(RACTuple *)arguments {
 	NSCParameterAssert(block != NULL);
 
-	RACBlockTrampoline *trampoline = [[self alloc] initWithBlock:block];
+	RACBlockTrampoline *trampoline = [(RACBlockTrampoline *)[self alloc] initWithBlock:block];
 	return [trampoline invokeWithArguments:arguments];
 }
 

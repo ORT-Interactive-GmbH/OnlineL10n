@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "OnlineL10n"
-  s.version      = "0.3.1"
+  s.version      = "0.3.2"
   s.summary      = "Online localization framework written in Swift"
 
   s.description  = <<-DESC
@@ -56,10 +56,10 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios
-  #s.platform     = :ios, "8.0"
+  #s.platform     = :ios, "10.0"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "10.0"
   # s.osx.deployment_target = "10.7"
 
 
@@ -123,7 +123,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
 
   s.dependency 'ReactiveObjC'

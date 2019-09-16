@@ -84,7 +84,7 @@ public class CountryController: UIViewController {
         if let selectedLocale = self.localizationManager.currentLanguage() {
             let allLocales = self.localizationManager.languages()
 
-            if let index = allLocales.index(of: selectedLocale) {
+            if let index = allLocales.firstIndex(of: selectedLocale) {
                 return IndexPath(row: index, section: 0)
             }
         }
