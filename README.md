@@ -6,6 +6,9 @@ If you need an example, simply clone the library and run the application in simu
 
 Data binding is implemented using [ReactiveObjC][3] library. So even if you _don't_ need online localization, at least you have a miniature example for how to use data binding with [ReactiveObjC][3] :wink:
 
+Info:
+v0.3.1 -> v0.3.2 -> updated from SWIFT 3 to 5
+
 ## Installation
 
 The recommended approach for installing OnlineL10n is via the [CocoaPods][4] package manager, as it provides flexible dependency management and dead simple installation.
@@ -23,7 +26,7 @@ Change to the directory of your Xcode project, and Create and Edit your Podfile 
 $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
-platform :ios, '8.0'
+platform :ios, '10.0'
 
 pod 'OnlineL10n'
 ```
